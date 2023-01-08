@@ -9,11 +9,25 @@ This repo is a jetpack compose library to ask user for a pin code and display it
 
 ## Getting Started
 
+### Old configuration
 Add the following code to your project's _root_ `build.gradle` file:
 
 ```groovy
 repositories {
     maven { url "https://jitpack.io" }
+}
+```
+
+### New configuration
+Add the following code to your project's `settings.gradle` file:
+
+```groovy
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        ...
+        maven { url "https://jitpack.io" }
+    }
 }
 ```
 
@@ -38,7 +52,6 @@ fun Usage() {
     PinPad(pincode) {
         pincode = it.pinCode
         if (it is PinPadResult.EntryFinished) {
-            Toast.makeText(this@MainActivity, "Entry finished", Toast.LENGTH_SHORT).show()
             Log.d(tag, "Pincode entry is finished, pincode is $pincode")
         } else {
             Log.d(tag, "Pincode changed to $pincode")
@@ -51,10 +64,18 @@ The default length for pin code is 6. To change it pass the desired length as se
 ```
     ...
 
-    PinBox(pincode, 4)
-    PinPad(pincode, 4) {
+    PinBox(pincode = pincode, maxPinLength = 4)
+    PinPad(pincode = pincode, maxPinLength = 4) {
         ....
     }
     ...
+
+```
+
+PinBox hides the entered pin code by default, to change this to make the pin code visible to the user, pass the false to `isPinHidden` parameter:
+```
+    ...
+
+    PinBox(pincode = pincode, isPinHidden = false)
 
 ```

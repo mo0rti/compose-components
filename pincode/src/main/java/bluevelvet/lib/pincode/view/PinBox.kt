@@ -2,6 +2,7 @@ package bluevelvet.lib.pincode.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -12,6 +13,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import bluevelvet.lib.pincode.theme.LightGray
+import bluevelvet.lib.pincode.theme.LightGray2
 import bluevelvet.lib.pincode.theme.Typography
 
 //
@@ -22,7 +24,8 @@ import bluevelvet.lib.pincode.theme.Typography
 @Composable
 fun PinBox(
     pincode: String = "",
-    maxPinLength: Int = 6
+    maxPinLength: Int = 6,
+    isPinHidden: Boolean = true,
 ) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(5.dp),
@@ -37,19 +40,30 @@ fun PinBox(
                     contentAlignment = Alignment.Center
             ) {
                 pincode.getOrNull(it)?.let {
-                    Text(
-                        textAlign = TextAlign.Center,
-                        style = Typography.h3,
-                        text = it.toString()
-                    )
+                    if (isPinHidden) {
+                        HiddenText()
+                    } else {
+                        Text(
+                            textAlign = TextAlign.Center,
+                            style = Typography.h3,
+                            text = it.toString()
+                        )
+                    }
                 }
             }
         }
     }
 }
 
+@Composable
+fun HiddenText() {
+    Box(
+        modifier = Modifier.size(20.dp).clip(CircleShape).background(LightGray2)
+    )
+}
+
 @Preview
 @Composable
 fun PreviewPinBox() {
-    PinBox()
+    PinBox("134")
 }

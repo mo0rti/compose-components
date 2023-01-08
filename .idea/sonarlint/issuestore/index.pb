@@ -9,8 +9,6 @@ k
 ;pincode/src/main/java/bluevelvet/lib/pincode/theme/Theme.kt,7/7/7766c7ee5881cbc9b8bc5a5f24760744b2aeacee
 j
 :pincode/src/main/java/bluevelvet/lib/pincode/theme/Type.kt,a/3/a3f87eb6749814a88d8faf9dd06f9d255fc63ef5
-k
-;pincode/src/main/java/bluevelvet/lib/pincode/theme/Color.kt,0/3/032d4b54570d52b3ba005c628a4695c17ec020d2
 X
 (gradle/wrapper/gradle-wrapper.properties,f/b/fbe448ebfc3eb2d4e308f6b8b043666f5b57235e
 m
