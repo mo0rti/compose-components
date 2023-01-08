@@ -2,6 +2,7 @@ package bluevelvet.sample.pincode
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
@@ -19,6 +20,8 @@ import bluevelvet.lib.pincode.view.PinPad
 import bluevelvet.lib.pincode.view.PinPadResult
 
 class MainActivity : ComponentActivity() {
+    private val tag = "PINCODE-SAMPLE"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -35,8 +38,11 @@ class MainActivity : ComponentActivity() {
                         PinBox(pincode)
                         PinPad(pincode) {
                             pincode = it.pinCode
-                            if (it is PinPadResult.ChangeFinished) {
-                                Log.i("Pin Pad", "----> ChangeFinished")
+                            if (it is PinPadResult.EntryFinished) {
+                                Toast.makeText(this@MainActivity, "Entry finished", Toast.LENGTH_SHORT).show()
+                                Log.d(tag, "Pincode entry is finished, pincode is $pincode")
+                            } else {
+                                Log.d(tag, "Pincode changed to $pincode")
                             }
                         }
                     }

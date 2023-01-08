@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'bluevelvet.app.pincode'
+    namespace 'bluevelvet.sample.pincode'
     compileSdk 33
 
     defaultConfig {
-        applicationId "bluevelvet.app.pincode"
+        applicationId "bluevelvet.sample.pincode"
         minSdk 29
         targetSdk 33
         versionCode 1

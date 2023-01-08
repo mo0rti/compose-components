@@ -21,7 +21,7 @@ import bluevelvet.lib.pincode.theme.PinCodeTheme
 
 sealed class PinPadResult(open val pinCode: String) {
     data class Changed(override val pinCode: String): PinPadResult(pinCode)
-    data class ChangeFinished(override val pinCode: String): PinPadResult(pinCode)
+    data class EntryFinished(override val pinCode: String): PinPadResult(pinCode)
 }
 
 @Composable
@@ -60,11 +60,14 @@ fun PinPad(
                         when {
                             button is PinButtonType.Digit && (pinCode.length < maxPinLength) ->  {
                                 (pinCode + button.number.toString()).apply {
-                                    if (length == maxPinLength) callback(PinPadResult.ChangeFinished(this))
+                                    if (length == maxPinLength) callback(PinPadResult.EntryFinished(this))
                                     else callback(PinPadResult.Changed(this))
                                 }
                             }
-                            button is PinButtonType.Delete -> callback(PinPadResult.Changed(pinCode.dropLast(1)))
+                            button is PinButtonType.Delete -> {
+                                if (pinCode.isNotBlank())
+                                    callback(PinPadResult.Changed(pinCode.dropLast(1)))
+                            }
                             button is PinButtonType.Biometric -> {
                                 // TODO: needs to be implemented
                             }
