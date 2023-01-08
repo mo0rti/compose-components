@@ -7,6 +7,9 @@ android {
     namespace 'bluevelvet.lib.pincode'
     compileSdk 33
 
+    group = 'bluevelvet-group'
+    version = 'v0.0.1-beta.1'
+
     defaultConfig {
         minSdk 29
         targetSdk 33
@@ -24,6 +27,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -42,10 +46,12 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+    testFixtures {
+        enable = true
+    }
 }
 
 dependencies {
-
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'androidx.activity:activity-compose:1.6.1'
