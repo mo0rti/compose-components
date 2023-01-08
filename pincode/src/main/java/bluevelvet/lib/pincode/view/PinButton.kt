@@ -1,4 +1,4 @@
-package bluevelvet.app.pincode
+package bluevelvet.lib.pincode.view
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
@@ -13,9 +13,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import bluevelvet.app.pincode.ui.theme.PinAlphabet
-import bluevelvet.app.pincode.ui.theme.PinCodeTheme
-import bluevelvet.app.pincode.ui.theme.White
+import bluevelvet.lib.pincode.R
+import bluevelvet.lib.pincode.theme.PinAlphabet
+import bluevelvet.lib.pincode.theme.PinCodeTheme
+import bluevelvet.lib.pincode.theme.White
 
 /**
  * Created by Morteza Taghdisi on 29/12/2022

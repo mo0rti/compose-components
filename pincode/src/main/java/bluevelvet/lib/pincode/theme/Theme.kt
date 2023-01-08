@@ -1,4 +1,4 @@
-package bluevelvet.app.pincode.ui.theme
+package bluevelvet.lib.pincode.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
@@ -19,7 +19,7 @@ private val LightColorPalette = lightColors(
 )
 
 @Composable
-fun PinCodeSampleTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
+fun PinCodeTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
     val colors = if (darkTheme) {
         DarkColorPalette
     } else {
@@ -29,6 +29,7 @@ fun PinCodeSampleTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Com
     MaterialTheme(
         colors = colors,
         typography = Typography,
+        shapes = Shapes,
         content = content
     )
 }

@@ -1,4 +1,4 @@
-package bluevelvet.app.pincode.ui.theme
+package bluevelvet.lib.pincode.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

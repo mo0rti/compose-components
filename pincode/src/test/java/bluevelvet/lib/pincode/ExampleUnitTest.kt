@@ -1,4 +1,4 @@
-package bluevelvet.app.pincode
+package bluevelvet.lib.pincode
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
