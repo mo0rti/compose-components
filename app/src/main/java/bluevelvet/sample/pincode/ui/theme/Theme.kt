@@ -1,4 +1,4 @@
-package bluevelvet.app.pincode.ui.theme
+package bluevelvet.sample.pincode.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
