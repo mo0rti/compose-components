@@ -12,8 +12,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import bluevelvet.lib.pincode.theme.LightGray
-import bluevelvet.lib.pincode.theme.LightGray2
 import bluevelvet.lib.pincode.theme.Typography
 
 //
@@ -23,25 +21,24 @@ import bluevelvet.lib.pincode.theme.Typography
 
 @Composable
 fun PinBox(
-    pincode: String = "",
-    maxPinLength: Int = 6,
-    isPinHidden: Boolean = true,
+    pinCode: String = "",
+    configuration: PinConfiguration = PinConfiguration(),
 ) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(5.dp),
     ) {
-        repeat(maxPinLength) {
+        repeat(configuration.maxLength) {
             Box(
                 modifier = Modifier
-                    .size(50.dp)
-                    .clip(RoundedCornerShape(20.dp))
-                    .background(color = LightGray)
-                    .padding(16.dp),
+                    .size(configuration.pinBoxSize)
+                    .clip(RoundedCornerShape(configuration.pinBoxRoundedCorner))
+                    .background(color = configuration.pinBoxBackgroundColor)
+                    .padding(configuration.pinBoxInnerPadding),
                     contentAlignment = Alignment.Center
             ) {
-                pincode.getOrNull(it)?.let {
-                    if (isPinHidden) {
-                        HiddenText()
+                pinCode.getOrNull(it)?.let {
+                    if (configuration.isHidden) {
+                        HiddenSymbol(configuration)
                     } else {
                         Text(
                             textAlign = TextAlign.Center,
@@ -56,9 +53,12 @@ fun PinBox(
 }
 
 @Composable
-fun HiddenText() {
+fun HiddenSymbol(configuration: PinConfiguration) {
     Box(
-        modifier = Modifier.size(20.dp).clip(CircleShape).background(LightGray2)
+        modifier = Modifier
+            .size(configuration.pinBoxHiddenSymbolSize)
+            .clip(CircleShape)
+            .background(configuration.pinBoxHiddenSymbolColor)
     )
 }
 

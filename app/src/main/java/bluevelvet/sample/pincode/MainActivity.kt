@@ -35,10 +35,10 @@ class MainActivity : ComponentActivity() {
                         horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
                         Spacer(modifier = Modifier.fillMaxWidth(1f))
-                        PinBox(pincode)
-                        PinPad(pincode) {
-                            pincode = it.pinCode
-                            if (it is PinPadResult.EntryFinished) {
+                        PinBox(pinCode = pincode)
+                        PinPad(pinCode = pincode) { result ->
+                            pincode = result.pinCode
+                            if (result is PinPadResult.EntryFinished) {
                                 Toast.makeText(this@MainActivity, "Entry finished", Toast.LENGTH_SHORT).show()
                                 Log.d(tag, "Pincode entry is finished, pincode is $pincode")
                             } else {

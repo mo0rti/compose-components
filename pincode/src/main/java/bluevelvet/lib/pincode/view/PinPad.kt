@@ -27,8 +27,8 @@ sealed class PinPadResult(open val pinCode: String) {
 @Composable
 fun PinPad(
     pinCode: String,
-    maxPinLength: Int = 6,
-    callback: (PinPadResult) -> Unit
+    configuration: PinConfiguration = PinConfiguration(),
+    completion: (PinPadResult) -> Unit
 ) {
 
     val buttons = listOf(
@@ -48,7 +48,7 @@ fun PinPad(
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(3),
-        modifier = Modifier.background(Background),
+        modifier = Modifier.background(configuration.pinPadBackgroundColor),
         contentPadding = PaddingValues(1.dp)
     ) {
         items(buttons) { button ->
@@ -58,15 +58,15 @@ fun PinPad(
                 Column(modifier = Modifier.fillMaxHeight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
                     PinButton(data = PinButtonData(button) {
                         when {
-                            button is PinButtonType.Digit && (pinCode.length < maxPinLength) ->  {
+                            button is PinButtonType.Digit && (pinCode.length < configuration.maxLength) ->  {
                                 (pinCode + button.number.toString()).apply {
-                                    if (length == maxPinLength) callback(PinPadResult.EntryFinished(this))
-                                    else callback(PinPadResult.Changed(this))
+                                    if (length == configuration.maxLength) completion(PinPadResult.EntryFinished(this))
+                                    else completion(PinPadResult.Changed(this))
                                 }
                             }
                             button is PinButtonType.Delete -> {
                                 if (pinCode.isNotBlank())
-                                    callback(PinPadResult.Changed(pinCode.dropLast(1)))
+                                    completion(PinPadResult.Changed(pinCode.dropLast(1)))
                             }
                             button is PinButtonType.Biometric -> {
                                 // TODO: needs to be implemented

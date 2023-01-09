@@ -8,6 +8,9 @@
 This repo is a jetpack compose library to ask user for a pin code and display it on boxes.
 
 ## Getting Started
+[![](https://jitpack.io/v/mo0rti/pincode-compose.svg)](https://jitpack.io/#mo0rti/pincode-compose)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![Compatible with Compose — 1.3.0](https://img.shields.io/badge/Compatible%20with%20Compose-1.3.0-brightgreen)](https://developer.android.com/jetpack/androidx/releases/compose-foundation#1.3.0)
 
 ### Old configuration
 Add the following code to your project's _root_ `build.gradle` file:
@@ -60,22 +63,37 @@ fun Usage() {
 }
 ```
 
-The default length for pin code is 6. To change it pass the desired length as second parameter to PinBox and PinPad:
-```
-    ...
 
-    PinBox(pincode = pincode, maxPinLength = 4)
-    PinPad(pincode = pincode, maxPinLength = 4) {
-        ....
+## Configuration
+PinPad and PinBox has configuration to customize the colors and size of the pin boxes and hidden symbol.
+Here are the explanation of the configuration:
+
+| Property     | Type | Default | Description |
+| -------------| ---- | ----------- | -------- |
+| isHidden | `Boolean` | true | It hides the pin code on pin box |
+| maxLength | `Boolean` | 6 | Maximum length for the pin code |
+| pinBoxSize | `Dp` | 50.dp | Size of each pin box |
+| pinBoxBackgroundColor | `Color` | 0xFFF5F5F5 | Size of each pin box |
+| pinBoxRoundedCorner | `Dp` | 20.dp | Size of corners of each pin box |
+| pinBoxInnerPadding | `Dp` | 16.dp | Internal padding size of each pin box |
+| pinBoxHiddenSymbolSize | `Dp` | 20.dp | Size of each rounded hidden symbol when the pin code is hidden |
+| pinBoxHiddenSymbolColor | `Color` | 0xFF37ABA1 | Color of rounded hidden symbol on pin box when the pin code is hidden |
+| pinPadBackgroundColor | `Color` | 0xFFE6E6E6 | Back ground color of Pin pad, This is not the pin pad button color |
+
+<br/>
+
+
+Passing the configuration is not mandatory, but to customize the component you can pass it to both `PinBox` and `PinCode`
+
+```kotlin
+
+    with(Configuration(maxLength = 4)) {
+        PinBox(pincode = pincode, configuration = this)
+        PinPad(pincode = pincode, configuration = this) {
+            ...
+        }
     }
-    ...
 
 ```
 
-PinBox hides the entered pin code by default, to change this to make the pin code visible to the user, pass the false to `isPinHidden` parameter:
-```
-    ...
-
-    PinBox(pincode = pincode, isPinHidden = false)
-
-```
+The above code displays 4 `PinBox` instead of 6 (default pin code length) to the user.
