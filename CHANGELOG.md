@@ -1,5 +1,10 @@
 # PinCodePad:
 
+## [0.0.4-beta.1] - 09-01-2023
+
+### Added
+- Added NumericPad.
+
 ## [0.0.3-beta.1] - 09-01-2023
 
 ### Added

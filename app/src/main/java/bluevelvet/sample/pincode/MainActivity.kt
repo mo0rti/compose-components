@@ -14,6 +14,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import bluevelvet.lib.pincode.view.NumericPad
 import bluevelvet.sample.pincode.ui.theme.PinCodeSampleTheme
 import bluevelvet.lib.pincode.view.PinBox
 import bluevelvet.lib.pincode.view.PinPad
