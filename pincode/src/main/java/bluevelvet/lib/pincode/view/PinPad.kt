@@ -10,14 +10,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import bluevelvet.lib.pincode.theme.Background
-import bluevelvet.lib.pincode.theme.PinCodeTheme
 
 /**
- * Created by Morteza Taghdisi on 29/12/2022
- * https://github.com/mo0rti
+ *
  */
-
 
 sealed class PinPadResult(open val pinCode: String) {
     data class Changed(override val pinCode: String): PinPadResult(pinCode)
@@ -26,11 +22,11 @@ sealed class PinPadResult(open val pinCode: String) {
 
 @Composable
 fun PinPad(
-    pinCode: String,
+    pincode: String,
     configuration: PinConfiguration = PinConfiguration(),
     completion: (PinPadResult) -> Unit
 ) {
-
+    val pinPadConfiguration = configuration.pinPadConfiguration ?: PinPadConfiguration()
     val buttons = listOf(
         PinButtonType.Digit.One,
         PinButtonType.Digit.Two,
@@ -48,7 +44,7 @@ fun PinPad(
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(3),
-        modifier = Modifier.background(configuration.pinPadBackgroundColor),
+        modifier = Modifier.background(pinPadConfiguration.backgroundColor),
         contentPadding = PaddingValues(1.dp)
     ) {
         items(buttons) { button ->
@@ -58,15 +54,17 @@ fun PinPad(
                 Column(modifier = Modifier.fillMaxHeight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
                     PinButton(data = PinButtonData(button) {
                         when {
-                            button is PinButtonType.Digit && (pinCode.length < configuration.maxLength) ->  {
-                                (pinCode + button.number.toString()).apply {
-                                    if (length == configuration.maxLength) completion(PinPadResult.EntryFinished(this))
-                                    else completion(PinPadResult.Changed(this))
+                            button is PinButtonType.Digit && (pincode.length < configuration.pinLength) ->  {
+                                (pincode + button.number.toString()).apply {
+                                    if (length == configuration.pinLength)
+                                        completion(PinPadResult.EntryFinished(this))
+                                    else
+                                        completion(PinPadResult.Changed(this))
                                 }
                             }
                             button is PinButtonType.Delete -> {
-                                if (pinCode.isNotBlank())
-                                    completion(PinPadResult.Changed(pinCode.dropLast(1)))
+                                if (pincode.isNotBlank())
+                                    completion(PinPadResult.Changed(pincode.dropLast(1)))
                             }
                             button is PinButtonType.Biometric -> {
                                 // TODO: needs to be implemented
@@ -82,7 +80,5 @@ fun PinPad(
 @Preview(showBackground = true)
 @Composable
 fun PinPadPreview() {
-    PinCodeTheme {
-        PinPad("") {}
-    }
+    PinPad("") {}
 }
