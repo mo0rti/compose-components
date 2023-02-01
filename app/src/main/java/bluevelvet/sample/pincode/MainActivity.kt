@@ -1,8 +1,6 @@
 package bluevelvet.sample.pincode
 
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
@@ -14,15 +12,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import bluevelvet.lib.pincode.view.NumericPad
 import bluevelvet.sample.pincode.ui.theme.PinCodeSampleTheme
 import bluevelvet.lib.pincode.view.PinBox
 import bluevelvet.lib.pincode.view.PinPad
 import bluevelvet.lib.pincode.view.PinPadResult
+import bluevelvet.lib.pincode.view.PinState
+import kotlinx.coroutines.*
 
 class MainActivity : ComponentActivity() {
-    private val tag = "PINCODE-SAMPLE"
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -30,20 +27,28 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
                     var pincode by remember { mutableStateOf("") }
+                    var state: PinState by remember { mutableStateOf(PinState.Default) }
 
                     Column(
                         verticalArrangement = Arrangement.SpaceBetween,
                         horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
                         Spacer(modifier = Modifier.fillMaxWidth(1f))
-                        PinBox(pinCode = pincode)
-                        PinPad(pinCode = pincode) { result ->
+                        PinBox(pincode = pincode, state = state)
+                        PinPad(pincode = pincode) { result ->
                             pincode = result.pinCode
-                            if (result is PinPadResult.EntryFinished) {
-                                Toast.makeText(this@MainActivity, "Entry finished", Toast.LENGTH_SHORT).show()
-                                Log.d(tag, "Pincode entry is finished, pincode is $pincode")
-                            } else {
-                                Log.d(tag, "Pincode changed to $pincode")
+                            when (result) {
+                                is PinPadResult.EntryFinished -> {
+                                    state = PinState.Loading
+                                    createJob {
+                                        delay(1000)
+                                        state = PinState.Success
+                                        // state = PinState.Error
+                                    }
+                                }
+                                is PinPadResult.Changed -> {
+                                    state = PinState.Default
+                                }
                             }
                         }
                     }
@@ -52,3 +57,5 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
+private fun createJob(completion: suspend () -> Unit) = CoroutineScope(Job() + Dispatchers.Main).launch { completion() }

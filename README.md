@@ -68,17 +68,18 @@ fun Usage() {
 PinPad and PinBox has configuration to customize the colors and size of the pin boxes and hidden symbol.
 Here are the explanation of the configuration:
 
-| Property     | Type | Default | Description |
-| -------------| ---- | ----------- | -------- |
-| isHidden | `Boolean` | true | It hides the pin code on pin box |
-| maxLength | `Boolean` | 6 | Maximum length for the pin code |
-| pinBoxSize | `Dp` | 50.dp | Size of each pin box |
-| pinBoxBackgroundColor | `Color` | 0xFFF5F5F5 | Size of each pin box |
-| pinBoxRoundedCorner | `Dp` | 20.dp | Size of corners of each pin box |
-| pinBoxInnerPadding | `Dp` | 16.dp | Internal padding size of each pin box |
-| pinBoxHiddenSymbolSize | `Dp` | 20.dp | Size of each rounded hidden symbol when the pin code is hidden |
-| pinBoxHiddenSymbolColor | `Color` | 0xFF37ABA1 | Color of rounded hidden symbol on pin box when the pin code is hidden |
-| pinPadBackgroundColor | `Color` | 0xFFE6E6E6 | Back ground color of Pin pad, This is not the pin pad button color |
+| Property                            | Type | Default | Description                                                           |
+|-------------------------------------| ---- | ----------- |-----------------------------------------------------------------------|
+| pinLength                           | `Boolean` | 6 | Maximum length for the pin code                                       |
+| PinBoxConfiguration.isPassword                            | `Boolean` | true | It hides the pin code on pin box                                      |
+| PinBoxConfiguration.boxSize         | `Dp` | 50.dp | Size of each pin box                                                  |
+| PinBoxConfiguration.boxBackgroundColor               | `Color` | 0xFFF5F5F5 | Size of each pin box                                                  |
+| PinBoxConfiguration.boxRoundedCorner                 | `Dp` | 20.dp | Size of corners of each pin box                                       |
+| PinBoxConfiguration.boxInnerPadding                  | `Dp` | 16.dp | Internal padding size of each pin box                                 |
+| PinBoxConfiguration.boxHiddenSymbolSize              | `Dp` | 20.dp | Size of each rounded hidden symbol when the pin code is hidden        |
+| PinBoxConfiguration.boxHiddenSymbolColor             | `Color` | 0xFF37ABA1 | Color of rounded hidden symbol on pin box when the pin code is hidden |
+| PinBoxConfiguration.loadingIndicatorColor             | `Color` | 0xFFFFEA8F | Color of loading indicator when pin code entry is finished            |
+| PinPadConfiguration.backgroundColor | `Color` | 0xFFE6E6E6 | Back ground color of Pin pad, This is not the pin pad button color    |
 
 <br/>
 

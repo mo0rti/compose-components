@@ -14,9 +14,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import bluevelvet.lib.pincode.R
-import bluevelvet.lib.pincode.theme.PinAlphabet
-import bluevelvet.lib.pincode.theme.PinCodeTheme
-import bluevelvet.lib.pincode.theme.White
+import bluevelvet.lib.pincode.theme.PinButtonAlphabetColor
+import bluevelvet.lib.pincode.theme.PinButtonBGColor
 
 /**
  * Created by Morteza Taghdisi on 29/12/2022
@@ -63,7 +62,7 @@ internal fun PinButton(data: PinButtonData) {
                 data.callback?.invoke()
             }
             .padding(all = 1.dp)
-            .background(White)
+            .background(PinButtonBGColor)
             .padding(all = 6.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
@@ -76,7 +75,7 @@ internal fun PinButton(data: PinButtonData) {
         Spacer(modifier = Modifier.height(4.dp))
         if (data.type is PinButtonType.Digit) {
             Text(
-                color = PinAlphabet,
+                color = PinButtonAlphabetColor,
                 text = data.type.alphabet,
                 fontSize = 8.sp
             )
@@ -87,7 +86,5 @@ internal fun PinButton(data: PinButtonData) {
 @Preview(showBackground = true)
 @Composable
 fun MessageCardPreview() {
-    PinCodeTheme {
-        PinButton(PinButtonData(PinButtonType.Digit.Three))
-    }
+    PinButton(PinButtonData(PinButtonType.Digit.Three))
 }
