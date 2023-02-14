@@ -15,3 +15,5 @@ dependencyResolutionManagement {
 rootProject.name = "ComposeComponents"
 include ':example'
 include ':components:pinview'
+include ':components:appbar'
+include ':components:button'
