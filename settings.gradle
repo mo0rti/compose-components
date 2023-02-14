@@ -12,6 +12,6 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Pincode"
-include ':app'
-include ':pincode'
+rootProject.name = "ComposeComponents"
+include ':example'
+include ':components:pinview'
