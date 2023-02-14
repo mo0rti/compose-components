@@ -1,7 +1,7 @@
 <h1 align="center">Pin Code with Numeric Pad</h1>
 
 <div align="center">
-  <img src="images/screenshot.png" alt="pin code pad demo" width=350>
+  <img src="../../images/pinview.png" alt="pin code pad demo" width=350>
 </div>
 <br>
 
@@ -14,7 +14,7 @@ This repo is a jetpack compose library to ask user for a pin code and display it
 
 ## Usage
 
-Examples are in the [source code](https://github.com/mo0rti/compose-components/blob/main/example/src/main/java/bluevelvet/composents/example/MainActivity.kt).
+Examples are in the [source code](../../example/src/main/java/bluevelvet/composents/example/MainActivity.kt).
 
 ```kotlin
 @Composable

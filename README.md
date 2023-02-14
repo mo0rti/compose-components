@@ -38,4 +38,4 @@ dependencies {
 ```
 
 ## Components
-- PinView [source code](https://github.com/mo0rti/compose-components/blob/main/example/src/main/java/bluevelvet/sample/pincode/MainActivity.kt).
+- PinView [source code](components/pinview).
