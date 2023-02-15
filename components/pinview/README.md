@@ -38,18 +38,17 @@ fun Usage() {
 PinPad and PinBox has configuration to customize the colors and size of the pin boxes and hidden symbol.
 Here are the explanation of the configuration:
 
-| Property                            | Type | Default | Description                                                           |
-|-------------------------------------| ---- | ----------- |-----------------------------------------------------------------------|
-| pinLength                           | `Boolean` | 6 | Maximum length for the pin code                                       |
-| PinBoxConfiguration.isPassword                            | `Boolean` | true | It hides the pin code on pin box                                      |
-| PinBoxConfiguration.boxSize         | `Dp` | 50.dp | Size of each pin box                                                  |
-| PinBoxConfiguration.boxBackgroundColor               | `Color` | 0xFFF5F5F5 | Size of each pin box                                                  |
-| PinBoxConfiguration.boxRoundedCorner                 | `Dp` | 20.dp | Size of corners of each pin box                                       |
-| PinBoxConfiguration.boxInnerPadding                  | `Dp` | 16.dp | Internal padding size of each pin box                                 |
-| PinBoxConfiguration.boxHiddenSymbolSize              | `Dp` | 20.dp | Size of each rounded hidden symbol when the pin code is hidden        |
-| PinBoxConfiguration.boxHiddenSymbolColor             | `Color` | 0xFF37ABA1 | Color of rounded hidden symbol on pin box when the pin code is hidden |
-| PinBoxConfiguration.loadingIndicatorColor             | `Color` | 0xFFFFEA8F | Color of loading indicator when pin code entry is finished            |
-| PinPadConfiguration.backgroundColor | `Color` | 0xFFE6E6E6 | Back ground color of Pin pad, This is not the pin pad button color    |
+| Property                            | Type | Default | Description                                                                                                                              |
+|-------------------------------------| ---- | ----------- |------------------------------------------------------------------------------------------------------------------------------------------|
+| pinLength                           | `Boolean` | 6 | Maximum length for the pin code                                                                                                          |
+| PinPadConfiguration.backgroundColor | `Color` | 0xFFE6E6E6 | Back ground color of Pin pad, Pin Box, Pin pad button color is not a part of this configuration                                          |
+| PinPadConfiguration.foregroundColor | `Color` | 0xFF999999 | Default state color of hidden symbol and visibile pin code text. Pin pad button alphabet text color is also a part of this configuration |
+| PinPadConfiguration.errorColor | `Color` | 0xFFFF6600 | Error state color of hidden symbol and visible pin code text color                                                                       |
+| PinBoxConfiguration.isHiddenPin                            | `Boolean` | true | It hides the pin code on pin box                                                                                                         |
+| PinBoxConfiguration.boxSize         | `Dp` | 50.dp | Size of each pin box                                                                                                                     |
+| PinBoxConfiguration.boxCornerSize                 | `Dp` | 20.dp | Size of corners of each pin box                                                                                                          |
+| PinBoxConfiguration.hiddenSymbolSize              | `Dp` | 20.dp | Size of each rounded hidden symbol when the pin code is hidden                                                                           |
+| PinBoxConfiguration.loadingIndicatorColor             | `Color` | 0xFFFFEA8F | Color of loading indicator when pin code entry is finished                                                                               |
 
 <br/>
 

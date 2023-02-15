@@ -1,6 +1,7 @@
 package bluevelvet.composents.example
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
@@ -18,6 +19,7 @@ import bluevelvet.composents.pinview.view.PinPad
 import bluevelvet.composents.pinview.view.PinPadResult
 import bluevelvet.composents.pinview.view.PinState
 import kotlinx.coroutines.*
+import kotlin.random.Random
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,11 +41,23 @@ class MainActivity : ComponentActivity() {
                             pincode = result.pinCode
                             when (result) {
                                 is PinPadResult.EntryFinished -> {
-                                    state = PinState.Loading
                                     createJob {
+                                        // You can add some delay here so last entered number will be displayed on the pin box
+                                        delay(200)
+
+                                        state = PinState.Loading
+
+                                        // Simulating network call or checking for pincode validity
                                         delay(1000)
-                                        state = PinState.Success
-                                        // state = PinState.Error
+
+                                        // Randomizing the pin code validity result
+                                        state = if (Random.nextBoolean())
+                                            PinState.Success
+                                        else
+                                            PinState.Error
+
+                                        if (state is PinState.Error)
+                                            Toast.makeText(this@MainActivity, "Incorrect pin code", Toast.LENGTH_SHORT).show()
                                     }
                                 }
                                 is PinPadResult.Changed -> {

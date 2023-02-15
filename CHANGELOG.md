@@ -1,4 +1,24 @@
-# PinCodePad:
+# Composents (Compose components):
+
+## [0.0.6-beta.1] - 15-02-2023
+
+### Changed
+- The PinView configuration has been updated
+
+## [0.0.5-beta.2] - 14-02-2023
+
+### Changed
+- The repository has been renamed to Composents
+
+## [0.0.5-beta.2] - 15-02-2023
+
+### Changed
+- The repository has been renamed to Composents
+
+## [0.0.5-beta.1] - 10-02-2023
+
+### Changed
+- The application structure has been updated
 
 ## [0.0.4-beta.1] - 09-01-2023
 

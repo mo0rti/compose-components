@@ -3,10 +3,10 @@ package bluevelvet.composents.pinview.view
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import bluevelvet.composents.pinview.theme.PinBoxBGColor
-import bluevelvet.composents.pinview.theme.PinBoxFGNormalColor
-import bluevelvet.composents.pinview.theme.PinBoxProgressIndicatorColor
-import bluevelvet.composents.pinview.theme.PinPadBGColor
+import bluevelvet.composents.pinview.theme.PinViewBackgroundColor
+import bluevelvet.composents.pinview.theme.PinViewErrorColor
+import bluevelvet.composents.pinview.theme.PinViewForegroundColor
+import bluevelvet.composents.pinview.theme.PinViewLoadingIndicatorColor
 
 //
 // Created by Morteza Taghdisi on 09 Jan 2023.
@@ -15,21 +15,16 @@ import bluevelvet.composents.pinview.theme.PinPadBGColor
 
 data class PinConfiguration(
     val pinLength: Int = 6,
+    val backgroundColor: Color = PinViewBackgroundColor,
+    val foregroundColor: Color = PinViewForegroundColor,
+    val errorColor: Color = PinViewErrorColor,
     val pinBoxConfiguration: PinBoxConfiguration? = null,
-    val pinPadConfiguration: PinPadConfiguration? = null,
 )
 
 data class PinBoxConfiguration(
-    val isPassword: Boolean = true,
+    val isHiddenPin: Boolean = true,
     val boxSize: Dp = 50.dp,
-    val boxBackgroundColor: Color = PinBoxBGColor,
-    val boxRoundedCorner: Dp = 20.dp,
-    val boxInnerPadding: Dp = 16.dp,
-    val boxHiddenSymbolSize: Dp = 20.dp,
-    val boxHiddenSymbolColor: Color = PinBoxFGNormalColor,
-    val loadingIndicatorColor: Color = PinBoxProgressIndicatorColor
-)
-
-data class PinPadConfiguration(
-    val backgroundColor: Color = PinPadBGColor,
+    val boxCornerSize: Dp = 20.dp,
+    val hiddenSymbolSize: Dp = 20.dp,
+    val loadingIndicatorColor: Color = PinViewLoadingIndicatorColor
 )

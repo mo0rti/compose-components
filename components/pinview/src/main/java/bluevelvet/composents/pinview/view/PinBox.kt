@@ -7,19 +7,18 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Typography
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import bluevelvet.composents.pinview.R
-import bluevelvet.composents.pinview.theme.PinBoxFGErrorColor
-import bluevelvet.composents.pinview.theme.PinBoxFGNormalColor
 
 /**
  * PinBox View
@@ -73,7 +72,7 @@ fun PinBox(
 }
 
 @Composable
-fun PinBoxDigitEntries(
+private fun PinBoxDigitEntries(
     pincode: String = "",
     state: PinState,
     configuration: PinConfiguration,
@@ -84,22 +83,22 @@ fun PinBoxDigitEntries(
         Box(
             modifier = Modifier
                 .size(pinBoxConfiguration.boxSize)
-                .clip(RoundedCornerShape(pinBoxConfiguration.boxRoundedCorner))
-                .background(color = pinBoxConfiguration.boxBackgroundColor)
-                .padding(pinBoxConfiguration.boxInnerPadding),
+                .clip(RoundedCornerShape(pinBoxConfiguration.boxCornerSize))
+                .background(color = configuration.backgroundColor),
             contentAlignment = Alignment.Center
         ) {
             pincode.getOrNull(it)?.let {
-                if (pinBoxConfiguration.isPassword) {
-                    PinBoxHiddenEntry(
-                        configuration = pinBoxConfiguration,
+                if (pinBoxConfiguration.isHiddenPin) {
+                    HiddenSymbol(
+                        configuration = configuration,
                         state = state
                     )
                 } else {
                     Text(
                         textAlign = TextAlign.Center,
-                        //style = Typography.,
-                        color = if (state is PinState.Error) PinBoxFGErrorColor else PinBoxFGNormalColor,
+                        fontSize = 25.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = if (state is PinState.Error) configuration.errorColor else configuration.foregroundColor,
                         text = it.toString()
                     )
                 }
@@ -109,20 +108,21 @@ fun PinBoxDigitEntries(
 }
 
 @Composable
-fun PinBoxHiddenEntry(
+private fun HiddenSymbol(
     state: PinState,
-    configuration: PinBoxConfiguration,
+    configuration: PinConfiguration,
 ) {
+    val pinBoxConfiguration = configuration.pinBoxConfiguration ?: PinBoxConfiguration()
     Box(
         modifier = Modifier
-            .size(configuration.boxHiddenSymbolSize)
+            .size(pinBoxConfiguration.hiddenSymbolSize)
             .clip(CircleShape)
-            .background(if (state is PinState.Error) PinBoxFGErrorColor else configuration.boxHiddenSymbolColor)
+            .background(if (state is PinState.Error) configuration.errorColor else configuration.foregroundColor)
     )
 }
 
 @Composable
-fun PinBoxCircularLoadingIndicator(
+private fun PinBoxCircularLoadingIndicator(
     configuration: PinBoxConfiguration
 ) {
     CircularProgressIndicator(
@@ -133,7 +133,7 @@ fun PinBoxCircularLoadingIndicator(
 }
 
 @Composable
-fun PinBoxSuccess() {
+private fun PinBoxSuccess() {
     Image(
         modifier = Modifier.size(60.dp),
         painter = painterResource(id = R.drawable.ic_rounded_tick),
@@ -141,14 +141,24 @@ fun PinBoxSuccess() {
     )
 }
 
-@Preview
+@Preview("Visible pin code")
 @Composable
-fun PinBoxPreview() {
-    PinBox("134")
+private fun PinBoxVisiblePinPreview() {
+    PinBox(pincode = "134", configuration = PinConfiguration(
+        pinBoxConfiguration = PinBoxConfiguration(isHiddenPin = false)
+    ))
+}
+
+@Preview("Hidden pin code")
+@Composable
+private fun PinBoxHiddenPinPreview() {
+    PinBox(pincode = "134", configuration = PinConfiguration(
+        pinBoxConfiguration = PinBoxConfiguration(isHiddenPin = true)
+    ))
 }
 
 @Preview
 @Composable
-fun PinBoxCircularLoadingIndicatorPreview() {
+private fun PinBoxCircularLoadingIndicatorPreview() {
     PinBoxCircularLoadingIndicator(PinBoxConfiguration())
 }

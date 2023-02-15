@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="birdFlower">#FF222222</color>
-    <color name="lightSeaGreen">#37ABA1</color>
+    <color name="pinview_foreground">#FF222222</color>
+    <color name="pinview_success_tick_background">#37ABA1</color>
 </resources>

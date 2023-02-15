@@ -26,7 +26,6 @@ fun PinPad(
     configuration: PinConfiguration = PinConfiguration(),
     completion: (PinPadResult) -> Unit
 ) {
-    val pinPadConfiguration = configuration.pinPadConfiguration ?: PinPadConfiguration()
     val buttons = listOf(
         PinButtonType.Digit.One,
         PinButtonType.Digit.Two,
@@ -44,7 +43,7 @@ fun PinPad(
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(3),
-        modifier = Modifier.background(pinPadConfiguration.backgroundColor),
+        modifier = Modifier.background(configuration.backgroundColor),
         contentPadding = PaddingValues(1.dp)
     ) {
         items(buttons) { button ->
@@ -70,7 +69,7 @@ fun PinPad(
                                 // TODO: needs to be implemented
                             }
                         }
-                    })
+                    }, configuration)
                 }
             }
         }
