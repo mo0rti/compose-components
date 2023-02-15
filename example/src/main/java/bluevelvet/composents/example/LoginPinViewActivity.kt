@@ -5,8 +5,8 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -21,17 +21,22 @@ import bluevelvet.composents.pinview.view.PinState
 import kotlinx.coroutines.*
 import kotlin.random.Random
 
-class MainActivity : ComponentActivity() {
+class LoginPinViewActivity : ComponentActivity() {
+    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             ComposentsExampleTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
-                    var pincode by remember { mutableStateOf("") }
-                    var state: PinState by remember { mutableStateOf(PinState.Default) }
+                var pincode by remember { mutableStateOf("") }
+                var state: PinState by remember { mutableStateOf(PinState.Default) }
+
+                Scaffold { innerPadding ->
+                    val contentPadding = Modifier
+                        .fillMaxSize()
+                        .padding(innerPadding)
 
                     Column(
+                        modifier = contentPadding,
                         verticalArrangement = Arrangement.SpaceBetween,
                         horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
@@ -57,7 +62,7 @@ class MainActivity : ComponentActivity() {
                                             PinState.Error
 
                                         if (state is PinState.Error)
-                                            Toast.makeText(this@MainActivity, "Incorrect pin code", Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(this@LoginPinViewActivity, "Incorrect pin code", Toast.LENGTH_SHORT).show()
                                     }
                                 }
                                 is PinPadResult.Changed -> {

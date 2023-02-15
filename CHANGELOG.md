@@ -1,5 +1,10 @@
 # Composents (Compose components):
 
+## [0.0.7-beta.1] - 15-02-2023
+
+### Added
+- The ComposentTopAppBar has been added
+
 ## [0.0.6-beta.1] - 15-02-2023
 
 ### Changed

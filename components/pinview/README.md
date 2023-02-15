@@ -14,7 +14,7 @@ This repo is a jetpack compose library to ask user for a pin code and display it
 
 ## Usage
 
-Examples are in the [source code](../../example/src/main/java/bluevelvet/composents/example/MainActivity.kt).
+Examples are in the [source code](../../example/src/main/java/bluevelvet/composents/example/LoginPinViewActivity.kt).
 
 ```kotlin
 @Composable
