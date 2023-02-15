@@ -3,10 +3,10 @@ package bluevelvet.composents.pinview.view
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import bluevelvet.composents.pinview.theme.PinPadBGColor
 import bluevelvet.composents.pinview.theme.PinBoxBGColor
 import bluevelvet.composents.pinview.theme.PinBoxFGNormalColor
 import bluevelvet.composents.pinview.theme.PinBoxProgressIndicatorColor
+import bluevelvet.composents.pinview.theme.PinPadBGColor
 
 //
 // Created by Morteza Taghdisi on 09 Jan 2023.

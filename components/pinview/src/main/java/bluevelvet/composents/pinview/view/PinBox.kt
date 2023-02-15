@@ -6,8 +6,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.Text
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Typography
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,7 +20,6 @@ import androidx.compose.ui.unit.dp
 import bluevelvet.composents.pinview.R
 import bluevelvet.composents.pinview.theme.PinBoxFGErrorColor
 import bluevelvet.composents.pinview.theme.PinBoxFGNormalColor
-import bluevelvet.composents.pinview.theme.Typography
 
 /**
  * PinBox View
@@ -98,7 +98,7 @@ fun PinBoxDigitEntries(
                 } else {
                     Text(
                         textAlign = TextAlign.Center,
-                        style = Typography.h3,
+                        //style = Typography.,
                         color = if (state is PinState.Error) PinBoxFGErrorColor else PinBoxFGNormalColor,
                         text = it.toString()
                     )
