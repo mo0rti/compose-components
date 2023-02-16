@@ -95,7 +95,7 @@ fun ComposentTopAppBar(
 }
 
 @Composable
-fun OverflowMenu(menuItem: ComposentMenuItem) {
+private fun OverflowMenu(menuItem: ComposentMenuItem) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -110,7 +110,7 @@ fun OverflowMenu(menuItem: ComposentMenuItem) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview("Over flow menu")
 @Composable
-fun PreviewOverflowMenu() {
+private fun PreviewOverflowMenu() {
     MaterialTheme {
         OverflowMenu(
             ComposentMenuItem(title = "Exit", icon = Icons.Filled.ExitToApp)
@@ -122,7 +122,7 @@ fun PreviewOverflowMenu() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview("App toolbar without overflow menu items")
 @Composable
-fun PreviewTopAppBar() {
+private fun PreviewTopAppBar() {
     MaterialTheme {
         ComposentTopAppBar(
             title = "This is the title",
@@ -137,7 +137,7 @@ fun PreviewTopAppBar() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview("App toolbar with overflow menu items")
 @Composable
-fun PreviewTopAppBarWithOverflowItems() {
+private fun PreviewTopAppBarWithOverflowItems() {
     MaterialTheme {
         ComposentTopAppBar(
             title = "This is the title",

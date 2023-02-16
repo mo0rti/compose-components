@@ -76,5 +76,3 @@ class LoginPinViewActivity : ComponentActivity() {
         }
     }
 }
-
-private fun createJob(completion: suspend () -> Unit) = CoroutineScope(Job() + Dispatchers.Main).launch { completion() }
