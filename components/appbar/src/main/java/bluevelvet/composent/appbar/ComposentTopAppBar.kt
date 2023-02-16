@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Apps
 import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Search
@@ -17,22 +16,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import kotlin.random.Random
+
+data class ComposentTopBarMenuItem(
+    val id: String,
+    val title: String,
+    val icon: ImageVector,
+    val type: ComposentMenuItemType = ComposentMenuItemType.MAIN,
+    val showOnlyTextOnOverflow: Boolean = false,
+)
 
 /**
- * A composable that displays the app bar with overflow menu items.
+ * A composable top app bar that displays the app bar with overflow menu items.
  *
  * @author Morteza Taghdisi
  * @since 2023-02-15
  **/
-
-data class ComposentMenuItem(
-    val id: Int = Random.nextInt(1, 999999999),
-    val title: String,
-    val icon: ImageVector,
-    val showOnlyTextOnOverflow: Boolean = false,
-)
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ComposentTopAppBar(
@@ -40,9 +38,8 @@ fun ComposentTopAppBar(
     modifier: Modifier = Modifier,
     topAppBarState: TopAppBarState = rememberTopAppBarState(),
     scrollBehavior: TopAppBarScrollBehavior? = TopAppBarDefaults.enterAlwaysScrollBehavior(topAppBarState),
-    menuItems: List<ComposentMenuItem> = emptyList(),
-    overflowMenuItems: List<ComposentMenuItem> = emptyList(),
-    onMenuItemClick: (ComposentMenuItem) -> Unit = {},
+    menuItems: List<ComposentTopBarMenuItem> = emptyList(),
+    onMenuItemClick: (ComposentTopBarMenuItem) -> Unit = {},
 ) {
     var expanded by remember { mutableStateOf(false) }
 
@@ -58,44 +55,51 @@ fun ComposentTopAppBar(
         modifier = modifier,
         actions = {
             Row {
-                menuItems.forEach { item ->
-                    IconButton(onClick = { onMenuItemClick(item) }) {
-                        Icon(
-                            imageVector = item.icon,
-                            contentDescription = item.title,
-                        )
+                menuItems
+                    .filter {
+                        it.type == ComposentMenuItemType.MAIN
+                    }.forEach { item ->
+                        IconButton(onClick = { onMenuItemClick(item) }) {
+                            Icon(
+                                imageVector = item.icon,
+                                contentDescription = item.title,
+                            )
+                        }
                     }
-                }
             }
 
-            if (overflowMenuItems.isNotEmpty()) {
-                IconButton(onClick = { expanded = true }) {
-                    Icon(
-                        imageVector = Icons.Filled.MoreVert,
-                        contentDescription = "More",
-                    )
-                }
-                DropdownMenu(
-                    expanded = expanded,
-                    onDismissRequest = { expanded = false }
-                ) {
-                    overflowMenuItems.forEach { item ->
-                        DropdownMenuItem(
-                            onClick = {
-                                onMenuItemClick(item)
-                                expanded = false
-                            },
-                            text = { OverflowMenu(item) },
-                        )
+            menuItems
+                .filter { it.type == ComposentMenuItemType.SUB }
+                .apply {
+                    if (isNotEmpty()) {
+                        IconButton(onClick = { expanded = true }) {
+                            Icon(
+                                imageVector = Icons.Filled.MoreVert,
+                                contentDescription = "More",
+                            )
+                        }
+                        DropdownMenu(
+                            expanded = expanded,
+                            onDismissRequest = { expanded = false }
+                        ) {
+                            forEach { item ->
+                                DropdownMenuItem(
+                                    onClick = {
+                                        onMenuItemClick(item)
+                                        expanded = false
+                                    },
+                                    text = { OverflowMenu(item) },
+                                )
+                            }
+                        }
                     }
                 }
-            }
         }
     )
 }
 
 @Composable
-private fun OverflowMenu(menuItem: ComposentMenuItem) {
+private fun OverflowMenu(menuItem: ComposentTopBarMenuItem) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -113,7 +117,7 @@ private fun OverflowMenu(menuItem: ComposentMenuItem) {
 private fun PreviewOverflowMenu() {
     MaterialTheme {
         OverflowMenu(
-            ComposentMenuItem(title = "Exit", icon = Icons.Filled.ExitToApp)
+            ComposentTopBarMenuItem(id = "exit", title = "Exit", icon = Icons.Filled.ExitToApp)
         )
     }
 }
@@ -127,8 +131,8 @@ private fun PreviewTopAppBar() {
         ComposentTopAppBar(
             title = "This is the title",
             menuItems = listOf(
-                ComposentMenuItem(title = "Favorite", icon = Icons.Outlined.Favorite),
-                ComposentMenuItem(title = "Search", icon = Icons.Filled.Search),
+                ComposentTopBarMenuItem(id = "favorite", title = "Favorite", icon = Icons.Outlined.Favorite),
+                ComposentTopBarMenuItem(id = "search", title = "Search", icon = Icons.Filled.Search),
             ),
         )
     }
@@ -142,12 +146,10 @@ private fun PreviewTopAppBarWithOverflowItems() {
         ComposentTopAppBar(
             title = "This is the title",
             menuItems = listOf(
-                ComposentMenuItem(title = "Favorite", icon = Icons.Outlined.Favorite),
-                ComposentMenuItem(title = "Search", icon = Icons.Filled.Search),
-            ),
-            overflowMenuItems = listOf(
-                ComposentMenuItem(title = "Exit", icon = Icons.Filled.ExitToApp),
-            ),
+                ComposentTopBarMenuItem(id = "favorite", title = "Favorite", icon = Icons.Outlined.Favorite),
+                ComposentTopBarMenuItem(id = "search", title = "Search", icon = Icons.Filled.Search),
+                ComposentTopBarMenuItem(id = "exit", title = "Exit", icon = Icons.Filled.ExitToApp, type = ComposentMenuItemType.SUB),
+            )
         )
     }
 }

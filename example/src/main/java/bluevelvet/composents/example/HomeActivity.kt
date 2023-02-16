@@ -3,46 +3,53 @@ package bluevelvet.composents.example
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ExitToApp
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Inbox
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material3.*
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import bluevelvet.composent.appbar.*
 import bluevelvet.composents.example.ui.theme.ComposentsExampleTheme
 
-@OptIn(ExperimentalMaterial3Api::class)
 class HomeActivity : ComponentActivity() {
 
-    private val favoriteMenu = ComposentMenuItem(title = "Favorite", icon = Icons.Outlined.Favorite)
-    private val searchMenu = ComposentMenuItem(title = "Search", icon = Icons.Filled.Search)
-    private val exitMenu = ComposentMenuItem(title = "Logout", icon = Icons.Filled.ExitToApp)
+    private val favoriteMenu = ComposentTopBarMenuItem(title = "Favorite", icon = Icons.Outlined.Favorite, id = "favorite")
+    private val searchMenu = ComposentTopBarMenuItem(title = "Search", icon = Icons.Filled.Search, id = "search")
+    private val exitMenu = ComposentTopBarMenuItem(title = "Logout", icon = Icons.Filled.ExitToApp, id = "logout", type = ComposentMenuItemType.SUB)
 
-    private val favoriteMenu2 = ComposentDrawerItem(title = "Favorite", icon = Icons.Outlined.Favorite, route = "favorite")
-    private val searchMenu2 = ComposentDrawerItem(title = "Search", icon = Icons.Filled.Search, route = "search")
-    private val exitMenu2 = ComposentDrawerItem(title = "Logout", icon = Icons.Filled.ExitToApp, route = "logout")
-
+    private val drawerHomeMenuItem = ComposentDrawerItem(title = "Home", icon = Icons.Filled.Home, id = "home")
+    private val drawerInboxMenuItem = ComposentDrawerItem(title = "Inbox", icon = Icons.Filled.Inbox, id = "inbox", badgeCount = 4)
+    private val drawerExitMenuItem = ComposentDrawerItem(title = "Logout", icon = Icons.Filled.ExitToApp, id = "logout")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val menuItems = listOf(favoriteMenu, searchMenu)
-        val overflowMenuItems = listOf(exitMenu)
+        val drawerMenuItems = listOf(drawerHomeMenuItem, drawerInboxMenuItem, drawerExitMenuItem)
+        val appBarMenuItems = listOf(favoriteMenu, searchMenu, exitMenu)
 
         setContent {
             ComposentsExampleTheme {
 
-                ComposentDrawerMenu(
-                    title = "This is the title",
-                    menuItems = listOf(favoriteMenu2, searchMenu2, exitMenu2),
-                    defaultRoute = "favorite",
-                    onMenuItemClick = {
+                var selectedDrawerMenuItem by remember { mutableStateOf(drawerMenuItems.first()) }
 
-                    }
+                ComposentDrawerMenu(
+                    appBarTitle = "This is the title",
+                    menuItemsTitle = "Choose an item",
+                    menuItems = drawerMenuItems,
+                    selectedItemId = selectedDrawerMenuItem.id,
+                    onMenuItemSelected = {
+                        selectedDrawerMenuItem = it
+                    },
                 ) {
-                    Text("hello")
+                    Text("hello ${selectedDrawerMenuItem.title}")
                 }
+            }
 
                 /*
                 var isLoading by remember { mutableStateOf(false) }
@@ -85,7 +92,7 @@ class HomeActivity : ComponentActivity() {
                     }
                 }
                 */
-            }
+
         }
     }
 }

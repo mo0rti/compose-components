@@ -3,6 +3,8 @@ package bluevelvet.composent.appbar
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.outlined.Menu
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -17,11 +19,11 @@ import androidx.compose.ui.tooling.preview.Preview
  **/
 
 @Composable
-fun AppNavRail(
-    currentRoute: String,
+internal fun AppNavRail(
+    menuItems: List<ComposentDrawerItem>,
     modifier: Modifier = Modifier,
-    menuItems: List<ComposentDrawerItem> = emptyList(),
-    onMenuItemClick: (ComposentDrawerItem) -> Unit = {},
+    selectedItemId: String,
+    onMenuItemClick: (ComposentDrawerItem) -> Unit,
 ) {
     NavigationRail(
         header = {
@@ -32,9 +34,9 @@ fun AppNavRail(
         Spacer(Modifier.weight(1f))
         menuItems.forEach { item ->
             NavigationRailItem(
-                selected = item.route == currentRoute,
+                selected = item.id == selectedItemId,
                 onClick = { onMenuItemClick(item) },
-                icon = { item.icon },
+                icon = { Icon(item.icon, contentDescription = null) },
                 label = { Text(item.title) },
                 alwaysShowLabel = false
             )
@@ -48,6 +50,10 @@ fun AppNavRail(
 @Composable
 fun PreviewAppNavRail() {
     AppNavRail(
-        currentRoute = "favorites",
-    )
+        menuItems = listOf(
+            ComposentDrawerItem(id = "favorite", title = "Favorite", icon = Icons.Filled.Favorite),
+            ComposentDrawerItem(id = "search", title = "Search", icon = Icons.Filled.Search),
+        ),
+        selectedItemId = "favorite",
+    ) { }
 }
