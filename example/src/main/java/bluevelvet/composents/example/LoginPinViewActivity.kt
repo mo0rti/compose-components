@@ -14,10 +14,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import bluevelvet.composents.example.ui.theme.ComposentsExampleTheme
-import bluevelvet.composents.pinview.view.PinBox
-import bluevelvet.composents.pinview.view.PinPad
-import bluevelvet.composents.pinview.view.PinPadResult
-import bluevelvet.composents.pinview.view.PinState
+import bluevelvet.composents.ui.pin.PinBox
+import bluevelvet.composents.ui.pin.PinPad
+import bluevelvet.composents.ui.pin.PinPadResult
+import bluevelvet.composents.ui.pin.PinState
 import kotlinx.coroutines.*
 import kotlin.random.Random
 

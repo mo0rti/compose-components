@@ -1,20 +1,21 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
 }
 
 android {
-    namespace 'bluevelvet.composents.example'
+    namespace 'bluevelvet.composents.ui'
     compileSdk 33
 
+    group = 'bluevelvet-group'
+    version = 'v0.0.5-beta.1'
+
     defaultConfig {
-        applicationId "bluevelvet.composents.example"
         minSdk 29
         targetSdk 33
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
         vectorDrawables {
             useSupportLibrary true
         }
@@ -44,31 +45,23 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+    testFixtures {
+        enable = true
+    }
 }
 
 dependencies {
-    implementation project(':components:ui')
-    implementation project(':components:foundation')
-
     // Core
     implementation "androidx.core:core-ktx:$core_ktx_version"
     implementation "androidx.activity:activity-compose:$activity_compose_version"
 
-    // LifeCycle
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_runtime_version"
-    implementation "androidx.lifecycle:lifecycle-runtime-compose:$lifecycle_runtime_compose_version"
-
+    // Compose UI
     implementation "androidx.compose.ui:ui:$compose_ui_version"
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_ui_version"
 
     // Material Design
     implementation "androidx.compose.material3:material3:$material_version"
     implementation "androidx.compose.material:material-icons-extended:$material_icons_extended_version"
-
-    // Navigation
-    implementation "androidx.navigation:navigation-runtime-ktx:$navigation_version"
-    implementation "androidx.navigation:navigation-compose:$navigation_version"
-
 
     // Test
     testImplementation "junit:junit:$junit_version"

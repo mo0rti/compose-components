@@ -1,98 +1,116 @@
 package bluevelvet.composents.example
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ExitToApp
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Inbox
-import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material3.*
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import bluevelvet.composent.appbar.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import bluevelvet.composents.foundation.*
+import bluevelvet.composents.foundation.button.ProgressButton
+import bluevelvet.composents.example.screen.HomeScreen
+import bluevelvet.composents.example.screen.InboxScreen
+import bluevelvet.composents.example.screen.SearchScreen
 import bluevelvet.composents.example.ui.theme.ComposentsExampleTheme
+import bluevelvet.composents.foundation.menu.ComposentsMenuItem
+import bluevelvet.composents.foundation.menu.ComposentsMenuItemType
+import kotlinx.coroutines.delay
 
 class HomeActivity : ComponentActivity() {
-
-    private val favoriteMenu = ComposentTopBarMenuItem(title = "Favorite", icon = Icons.Outlined.Favorite, id = "favorite")
-    private val searchMenu = ComposentTopBarMenuItem(title = "Search", icon = Icons.Filled.Search, id = "search")
-    private val exitMenu = ComposentTopBarMenuItem(title = "Logout", icon = Icons.Filled.ExitToApp, id = "logout", type = ComposentMenuItemType.SUB)
-
-    private val drawerHomeMenuItem = ComposentDrawerItem(title = "Home", icon = Icons.Filled.Home, id = "home")
-    private val drawerInboxMenuItem = ComposentDrawerItem(title = "Inbox", icon = Icons.Filled.Inbox, id = "inbox", badgeCount = 4)
-    private val drawerExitMenuItem = ComposentDrawerItem(title = "Logout", icon = Icons.Filled.ExitToApp, id = "logout")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val drawerMenuItems = listOf(drawerHomeMenuItem, drawerInboxMenuItem, drawerExitMenuItem)
-        val appBarMenuItems = listOf(favoriteMenu, searchMenu, exitMenu)
-
         setContent {
             ComposentsExampleTheme {
+                DrawerMenuLayout()
+                //AppbarMenuLayout()
+            }
+        }
+    }
 
-                var selectedDrawerMenuItem by remember { mutableStateOf(drawerMenuItems.first()) }
+    @Composable
+    private fun DrawerMenuLayout() {
+        val drawerHomeMenuItem = ComposentsMenuItem(title = "Home", icon = Icons.Filled.Home, id = "home")
+        val drawerInboxMenuItem = ComposentsMenuItem(title = "Inbox", icon = Icons.Filled.Inbox, id = "inbox", badgeCount = 4)
+        val drawerSearchMenuItem = ComposentsMenuItem(title = "Search", icon = Icons.Filled.Search, id = "search")
+        val drawerExitMenuItem = ComposentsMenuItem(title = "Logout", icon = Icons.Filled.ExitToApp, id = "logout")
+        val drawerMenuItems = listOf(drawerHomeMenuItem, drawerInboxMenuItem, drawerSearchMenuItem, drawerExitMenuItem)
 
-                ComposentDrawerMenu(
-                    appBarTitle = "This is the title",
-                    menuItemsTitle = "Choose an item",
-                    menuItems = drawerMenuItems,
-                    selectedItemId = selectedDrawerMenuItem.id,
-                    onMenuItemSelected = {
-                        selectedDrawerMenuItem = it
-                    },
-                ) {
-                    Text("hello ${selectedDrawerMenuItem.title}")
+        var selectedDrawerMenuItem by remember { mutableStateOf(drawerMenuItems.first()) }
+
+        ComposentsDrawerMenu(
+            appBarHeadline = "This is the title",
+            drawerHeadline = "Choose an item",
+            menuItems = drawerMenuItems,
+            selectedItemId = selectedDrawerMenuItem.id,
+            onMenuItemSelected = {
+                selectedDrawerMenuItem = it
+            },
+        ) {
+            when(selectedDrawerMenuItem.id) {
+                drawerHomeMenuItem.id -> HomeScreen()
+                drawerInboxMenuItem.id -> InboxScreen()
+                drawerSearchMenuItem.id -> SearchScreen()
+                drawerExitMenuItem.id -> {
+                    HomeScreen()
                 }
             }
+        }
+    }
 
-                /*
-                var isLoading by remember { mutableStateOf(false) }
+    @OptIn(ExperimentalMaterial3Api::class)
+    @Composable
+    private fun AppbarMenuLayout() {
+        val favoriteMenu = ComposentsMenuItem(title = "Favorite", icon = Icons.Outlined.Favorite, id = "favorite")
+        val searchMenu = ComposentsMenuItem(title = "Search", icon = Icons.Filled.Search, id = "search")
+        val settingMenu = ComposentsMenuItem(title = "Settings", icon = Icons.Filled.Settings, id = "settings", type = ComposentsMenuItemType.SECONDARY)
+        val exitMenu = ComposentsMenuItem(title = "Logout", icon = Icons.Filled.ExitToApp, id = "logout", type = ComposentsMenuItemType.SECONDARY)
 
-                Scaffold(
-                    topBar = {
-                        ComposentTopAppBar(
-                            "My Title",
-                            menuItems = menuItems,
-                            overflowMenuItems = overflowMenuItems,
-                        ) {
-                            when (it.id) {
-                                favoriteMenu.id -> {}
-                                searchMenu.id -> {}
-                                exitMenu.id -> {
-                                    startActivity(Intent(this, LoginPinViewActivity::class.java))
-                                }
-                            }
-                        }
-                    }
-                ) { innerPadding ->
-                    val contentModifier = Modifier
-                        .fillMaxSize()
-                        .padding(innerPadding)
+        val appBarMenuItems = listOf(favoriteMenu, searchMenu, settingMenu, exitMenu)
 
-                    Box(
-                        modifier = contentModifier
-                    ) {
-                        ProgressButton(
-                            text = "Save",
-                            isInProgress = isLoading,
-                            modifier = Modifier.fillMaxWidth(0.5f)
-                        ) {
-                            createJob {
-                                isLoading = true
-                                delay(3000)
-                                isLoading = false
-                            }
+        var isLoading by remember { mutableStateOf(false) }
+
+        Scaffold(
+            topBar = {
+                ComposentsTopAppBar(
+                    headline = "Head line",
+                    tailingMenuItems = appBarMenuItems,
+                ) {
+                    when (it.id) {
+                        favoriteMenu.id -> {}
+                        searchMenu.id -> {}
+                        exitMenu.id -> {
+                            startActivity(Intent(this, LoginPinViewActivity::class.java))
                         }
                     }
                 }
-                */
+            }
+        ) { innerPadding ->
+            val contentModifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
 
+            Box(
+                modifier = contentModifier
+            ) {
+                ProgressButton(
+                    text = "Save",
+                    isInProgress = isLoading,
+                    modifier = Modifier.fillMaxWidth(0.5f)
+                ) {
+                    createJob {
+                        isLoading = true
+                        delay(3000)
+                        isLoading = false
+                    }
+                }
+            }
         }
     }
 }

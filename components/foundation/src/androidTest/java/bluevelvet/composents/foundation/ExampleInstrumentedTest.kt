@@ -1,4 +1,4 @@
-package bluevelvet.composents.example
+package bluevelvet.composents.foundation
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -17,6 +17,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("bluevelvet.composent.example", appContext.packageName)
+        assertEquals("bluevelvet.composent.appbar.test", appContext.packageName)
     }
 }
