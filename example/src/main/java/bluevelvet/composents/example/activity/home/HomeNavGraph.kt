@@ -1,4 +1,4 @@
-package bluevelvet.composents.example
+package bluevelvet.composents.example.activity.home
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController

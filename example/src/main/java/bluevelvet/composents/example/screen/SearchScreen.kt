@@ -45,7 +45,7 @@ private fun SearchScreenContent() {
                 modifier = Modifier.fillMaxWidth(),
                 tailingContent = {
                     ProfileImage(
-                        drawableResource = R.drawable.avatar_1,
+                        drawableResource = R.mipmap.user_avatar,
                         description = "Profile image of user 1",
                         modifier = Modifier
                             .padding(12.dp)

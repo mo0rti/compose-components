@@ -1,5 +1,10 @@
 <h1 align="center">Composents (Compose components)</h1>
 
+<div align="center">
+  <img src="./components/docs/images/weblogo.png" alt="Compose components" width=500>
+</div>
+<br>
+
 This repo contains a set of jetpack compose components to help you build your compose application faster.
 
 ## Getting Started

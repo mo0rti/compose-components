@@ -1,5 +1,6 @@
-package bluevelvet.composents.example.activity
+package bluevelvet.composents.example.activity.auth
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -13,7 +14,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import bluevelvet.composents.example.createJob
+import bluevelvet.composents.example.activity.home.HomeActivity
+import bluevelvet.composents.example.core.createJob
 import bluevelvet.composents.example.ui.theme.ComposentsExampleTheme
 import bluevelvet.composents.ui.pin.PinBox
 import bluevelvet.composents.ui.pin.PinPad
@@ -64,6 +66,8 @@ class AuthActivity : ComponentActivity() {
 
                                         if (state is PinState.Error)
                                             Toast.makeText(this@AuthActivity, "Incorrect pin code", Toast.LENGTH_SHORT).show()
+                                        else
+                                            startActivity(Intent(this@AuthActivity, HomeActivity::class.java))
                                     }
                                 }
                                 is PinPadResult.Changed -> {

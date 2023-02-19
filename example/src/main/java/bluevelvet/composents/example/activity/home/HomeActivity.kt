@@ -1,4 +1,4 @@
-package bluevelvet.composents.example.activity
+package bluevelvet.composents.example.activity.home
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,7 +11,8 @@ import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import bluevelvet.composents.example.createJob
+import bluevelvet.composents.example.activity.auth.AuthActivity
+import bluevelvet.composents.example.core.createJob
 import bluevelvet.composents.foundation.*
 import bluevelvet.composents.foundation.button.ProgressButton
 import bluevelvet.composents.example.screen.HomeScreen

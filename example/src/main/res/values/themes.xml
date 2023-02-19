@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Theme.Example" parent="android:Theme.Material.Light.NoActionBar"/>
+
+    <style name="Theme.Example.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#FFFFFF</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/animated_splash_logo</item>
+        <item name="windowSplashScreenAnimationDuration">3000</item>
+    </style>
+
+    <style name="Theme.Example.Splash.Start"/>
+
 </resources>
