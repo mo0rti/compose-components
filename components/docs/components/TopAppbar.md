@@ -1,7 +1,7 @@
 <h1 align="center">Toolbar with overflow menu items</h1>
 
 <div align="center">
-  <img src="../../images/toolbar.png" alt="pin code pad demo" width=350>
+  <img src="../images/topappbar.png" alt="Toolbar with overflow menu items" width=350>
 </div>
 <br>
 
@@ -17,16 +17,15 @@ This repo is a jetpack compose library to easily create a toolbar with overflow 
 Examples are in the [source code](../../example/src/main/java/bluevelvet/composents/example/HomeActivity.kt).
 
 ```kotlin
-private val favoriteMenu = ComposentMenuItem(title = "Favorite", icon = Icons.Outlined.Favorite)
-private val searchMenu = ComposentMenuItem(title = "Search", icon = Icons.Filled.Search)
-private val exitMenu = ComposentMenuItem(title = "Logout", icon = Icons.Filled.ExitToApp)
+private val favoriteMenu = ComposentsMenuItem(id = "title", title = "Favorite", icon = Icons.Outlined.Favorite)
+private val searchMenu = ComposentsMenuItem(id = "search", title = "Search", icon = Icons.Filled.Search)
+private val exitMenu = ComposentsMenuItem(id = "logout", title = "Logout", icon = Icons.Filled.ExitToApp, type = ComposentsMenuItemType.SECONDARY) // overflow menu item
 
 Scaffold(
     topBar = {
-        ComposentTopAppBar(
+        ComposentsTopAppBar(
             "My Title",
             menuItems = menuItems,
-            overflowMenuItems = overflowMenuItems,
         ) {
             when (it.id) {
                 favoriteMenu.id -> {}
@@ -45,9 +44,9 @@ Scaffold(
 
 | Property                            | Type                      | Default      | Description                                                |
 |-------------------------------------|---------------------------|--------------|------------------------------------------------------------|
-| title | `String`                  | empty String | Title to be shown on App bar                               |
-| menuItems                           | `List<ComposentMenuItem>` | emptyList()  | Menu items should be visible on app bar                    |
-| overflowMenuItems | `List<ComposentMenuItem>` | emptyList()  | Menu items should be visible on overflow menu              |
-| onMenuItemClick | `Callback`                |              | Callback to detect which menu item has been tapped by user |
+| headline | `String`                  | empty String | Title to be shown on App bar                               |
+| headlineContent | `Compose`                  |null | Your custom headline component to be shown on App bar                               |
+| tailingMenuItems                           | `List<ComposentsMenuItem>` | emptyList()  | Menu items should be visible on app bar                    |
+| onTailingMenuItemSelected | `Callback`                |              | Callback to detect which menu item has been tapped by user |
 
 <br/>

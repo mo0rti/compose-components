@@ -37,6 +37,5 @@ dependencies {
 }
 ```
 
-## Components
-- PinView [source code](components/pinview).
-- ComposentTopAppBar [source code](components/appbar).
+## [Documentations](components/ui)
+

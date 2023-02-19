@@ -1,5 +1,6 @@
 package bluevelvet.composents.example.screen
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -51,7 +52,8 @@ private fun SearchScreenContent() {
                             .size(32.dp)
                     )
                 }
-            ) {
+            ) { searchedText ->
+                Log.d("Tag", searchedText)
             }
         }
     }
