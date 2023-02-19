@@ -1,4 +1,4 @@
-package bluevelvet.composents.example
+package bluevelvet.composents.example.activity
 
 import android.os.Bundle
 import android.widget.Toast
@@ -13,6 +13,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import bluevelvet.composents.example.createJob
 import bluevelvet.composents.example.ui.theme.ComposentsExampleTheme
 import bluevelvet.composents.ui.pin.PinBox
 import bluevelvet.composents.ui.pin.PinPad
@@ -21,7 +22,7 @@ import bluevelvet.composents.ui.pin.PinState
 import kotlinx.coroutines.*
 import kotlin.random.Random
 
-class LoginPinViewActivity : ComponentActivity() {
+class AuthActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,7 +63,7 @@ class LoginPinViewActivity : ComponentActivity() {
                                             PinState.Error
 
                                         if (state is PinState.Error)
-                                            Toast.makeText(this@LoginPinViewActivity, "Incorrect pin code", Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(this@AuthActivity, "Incorrect pin code", Toast.LENGTH_SHORT).show()
                                     }
                                 }
                                 is PinPadResult.Changed -> {

@@ -1,4 +1,4 @@
-package bluevelvet.composents.example
+package bluevelvet.composents.example.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,6 +11,7 @@ import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import bluevelvet.composents.example.createJob
 import bluevelvet.composents.foundation.*
 import bluevelvet.composents.foundation.button.ProgressButton
 import bluevelvet.composents.example.screen.HomeScreen
@@ -88,7 +89,7 @@ class HomeActivity : ComponentActivity() {
                         favoriteMenu.id -> {}
                         searchMenu.id -> {}
                         exitMenu.id -> {
-                            startActivity(Intent(this, LoginPinViewActivity::class.java))
+                            startActivity(Intent(this, AuthActivity::class.java))
                         }
                     }
                 }
