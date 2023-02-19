@@ -19,6 +19,8 @@ import bluevelvet.composents.example.screen.SearchScreen
 import bluevelvet.composents.example.ui.theme.ComposentsExampleTheme
 import bluevelvet.composents.foundation.menu.ComposentsMenuItem
 import bluevelvet.composents.foundation.menu.ComposentsMenuItemType
+import bluevelvet.composents.ui.navigation.ComposentsDrawerMenu
+import bluevelvet.composents.ui.navigation.ComposentsTopAppBar
 import kotlinx.coroutines.delay
 
 class HomeActivity : ComponentActivity() {

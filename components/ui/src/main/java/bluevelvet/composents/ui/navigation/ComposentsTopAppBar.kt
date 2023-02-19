@@ -1,4 +1,4 @@
-package bluevelvet.composents.foundation
+package bluevelvet.composents.ui.navigation
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons

@@ -1,4 +1,4 @@
-package bluevelvet.composents.foundation
+package bluevelvet.composents.ui.navigation
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
@@ -41,9 +41,9 @@ fun ComposentsDrawerMenu(
     appBarModifier: Modifier = Modifier,
     appBarHeadline: String = "",
     appBarHeadlineContent: (() -> Unit)? = null,
+    drawerMenuModifier: Modifier = Modifier,
     drawerHeadline: String = "",
     drawerHeadlineContent: (() -> Unit)? = null,
-    drawerMenuModifier: Modifier = Modifier,
     menuItems: List<ComposentsMenuItem> = emptyList(),
     onMenuItemSelected: (ComposentsMenuItem) -> Unit = {},
     selectedItemId: String = "",
@@ -77,17 +77,7 @@ fun ComposentsDrawerMenu(
         Scaffold(
             topBar = {
                 TopAppBar(
-                    title = {
-                        appBarHeadlineContent?.let {
-                            it()
-                        } ?: run {
-                            Text(
-                                text = appBarHeadline,
-                                style = typography.labelLarge,
-                                modifier = Modifier.padding(start = 8.dp)
-                            )
-                        }
-                    },
+                    title = { AppBarHeadLineContent(appBarHeadline = appBarHeadline, appBarHeadlineContent = appBarHeadlineContent) },
                     navigationIcon = {
                         IconButton(onClick = { coroutineScope.launch { drawerState.open() } }) {
                             Icon(imageVector = Icons.Outlined.Menu, contentDescription = null)
@@ -97,14 +87,30 @@ fun ComposentsDrawerMenu(
                 )
             }
         ) { paddingValues ->
-            Box(
+            Row(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(paddingValues)
+                    .padding(paddingValues),
             ) {
                 content()
             }
         }
+    }
+}
+
+@Composable
+private fun AppBarHeadLineContent(
+    appBarHeadline: String = "",
+    appBarHeadlineContent: (() -> Unit)? = null,
+) {
+    appBarHeadlineContent?.let {
+        it()
+    } ?: run {
+        Text(
+            text = appBarHeadline,
+            style = typography.labelLarge,
+            modifier = Modifier.padding(start = 8.dp)
+        )
     }
 }
 

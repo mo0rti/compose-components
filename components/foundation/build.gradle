@@ -47,6 +47,7 @@ dependencies {
     // Material Design
     implementation "androidx.compose.material3:material3:$material_version"
     implementation "androidx.compose.material:material-icons-extended:$material_icons_extended_version"
+    implementation "androidx.compose.material3:material3-window-size-class:$material_window_size_version"
 
     // Test
     testImplementation "junit:junit:$junit_version"
