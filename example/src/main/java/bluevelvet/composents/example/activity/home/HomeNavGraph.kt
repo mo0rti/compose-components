@@ -8,6 +8,7 @@ import androidx.navigation.compose.rememberNavController
 import bluevelvet.composents.foundation.menu.ComposentsMenuItem
 import bluevelvet.composents.example.screen.HomeScreen
 import bluevelvet.composents.example.screen.InboxScreen
+import bluevelvet.composents.example.screen.SearchScreen
 
 /**
  * Nav graph for the example app.
@@ -19,11 +20,12 @@ import bluevelvet.composents.example.screen.InboxScreen
 object Destinations {
     const val HOME = "home"
     const val INBOX = "inbox"
+    const val SEARCH = "search"
 }
 
 @Composable
-fun AppNavGraph(
-    navController: NavHostController = rememberNavController(),
+fun HomeNavGraph(
+    navController: NavHostController,
     selectedDrawerItem: ComposentsMenuItem
 ) {
     NavHost(
@@ -35,6 +37,9 @@ fun AppNavGraph(
         }
         composable(Destinations.INBOX) {
             InboxScreen()
+        }
+        composable(Destinations.SEARCH) {
+            SearchScreen()
         }
     }
 }

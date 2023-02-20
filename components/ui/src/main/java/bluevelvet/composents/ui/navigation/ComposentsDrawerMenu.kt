@@ -51,8 +51,6 @@ fun ComposentsDrawerMenu(
     badge: @Composable ((ComposentsMenuItem) -> Unit)? = null,
     content: @Composable () -> Unit,
 ) {
-    var currentSelectedItemId by remember { mutableStateOf(selectedItemId) }
-
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
 
     ModalNavigationDrawer(
@@ -63,12 +61,11 @@ fun ComposentsDrawerMenu(
                 drawerTitleContent = drawerHeadlineContent,
                 coroutineScope = coroutineScope,
                 drawerState = drawerState,
-                selectedItemId = currentSelectedItemId,
+                selectedItemId = selectedItemId,
                 menuItems = menuItems,
                 badge = badge,
                 onDrawerItemClick = {
                     onMenuItemSelected(it)
-                    currentSelectedItemId = it.id
                 },
             )
         },
