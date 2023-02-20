@@ -13,8 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import bluevelvet.composents.ui.bar.ComposentsSearchBar
 import bluevelvet.composents.example.R
+import bluevelvet.composents.ui.bar.ComposentsSearchBar
 
 /**
  * Search screen

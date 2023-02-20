@@ -67,6 +67,10 @@ dependencies {
     implementation "androidx.compose.material3:material3:$material_version"
     implementation "androidx.compose.material:material-icons-extended:$material_icons_extended_version"
 
+    // Pager and Indicators - Accompanist
+    implementation "com.google.accompanist:accompanist-pager:$accompanist_version"
+    implementation "com.google.accompanist:accompanist-pager-indicators:$accompanist_version"
+
     // Navigation
     implementation "androidx.navigation:navigation-runtime-ktx:$navigation_version"
     implementation "androidx.navigation:navigation-compose:$navigation_version"

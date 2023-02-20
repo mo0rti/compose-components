@@ -1,10 +1,17 @@
 package bluevelvet.composents.example.screen
 
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
-import bluevelvet.composents.ui.tooltip.BalloonBox
-import bluevelvet.composents.ui.tooltip.BalloonPosition
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
+import bluevelvet.composents.example.R
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.HorizontalPager
+import com.google.accompanist.pager.HorizontalPagerIndicator
+import com.google.accompanist.pager.rememberPagerState
 
 /**
  * Home Screen
@@ -13,21 +20,45 @@ import bluevelvet.composents.ui.tooltip.BalloonPosition
  * @since 2023-02-17
  **/
 
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun HomeScreen() {
-    Text("Home Screen")
 
-    var showBalloon by remember { mutableStateOf(false) }
+    val pagerState = rememberPagerState()
 
-    Button(
-        onClick = { showBalloon = !showBalloon }
-    ) {
-        Text("Show Balloon")
+    val pages = listOf(
+        SliderPage(title = "Title 1", image = R.mipmap.place_holder_200w_200h),
+        SliderPage(title = "Title 2", image = R.mipmap.place_holder_400w_300h),
+        SliderPage(title = "Title 3", image = R.mipmap.place_holder_300w_500h),
+    )
+
+    Column(modifier = Modifier.fillMaxSize()) {
+        HorizontalPager(
+            modifier = Modifier.fillMaxWidth(),
+            count = pages.size,
+            state = pagerState,
+            verticalAlignment = Alignment.Top
+        ) { position ->
+            ImagePage(pages[position])
+        }
+        HorizontalPagerIndicator(
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .padding(top = 20.dp),
+            pagerState = pagerState
+        )
+        Spacer(modifier = Modifier.fillMaxSize())
     }
 
-    BalloonBox(
-        text = "This is a balloon tooltip",
-        position = BalloonPosition.START,
-        showBalloon = showBalloon
+}
+
+@Composable
+private fun ImagePage(page: SliderPage) {
+    Image(
+        modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight(0.4f),
+        painter = painterResource(id = page.image),
+        contentDescription = page.title
     )
 }

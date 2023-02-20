@@ -14,6 +14,8 @@ buildscript {
         material_icons_extended_version = "1.4.0-beta01"
         material_window_size_version = "1.1.0-alpha06"
 
+        accompanist_version = "0.29.1-alpha"
+
         navigation_version = "2.5.3"
 
         junit_version = "4.13.2"
