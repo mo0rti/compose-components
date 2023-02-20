@@ -13,8 +13,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import bluevelvet.composents.ui.theme.PinViewButtonColor
 import bluevelvet.composents.ui.R
+import bluevelvet.composents.ui.theme.PinViewButtonColor
 
 /**
  * Created by Morteza Taghdisi on 29/12/2022

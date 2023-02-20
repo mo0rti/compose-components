@@ -10,10 +10,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import bluevelvet.composents.ui.pin.PinButton
-import bluevelvet.composents.ui.pin.PinButtonData
-import bluevelvet.composents.ui.pin.PinButtonType
-import bluevelvet.composents.ui.pin.PinConfiguration
 
 /**
  * A sealed class that represents the result of a user interaction.
