@@ -40,10 +40,10 @@ import kotlinx.coroutines.launch
 fun ComposentsDrawerMenu(
     appBarModifier: Modifier = Modifier,
     appBarHeadline: String = "",
-    appBarHeadlineContent: (() -> Unit)? = null,
+    appBarHeadlineContent: @Composable (() -> Unit)? = null,
     drawerMenuModifier: Modifier = Modifier,
     drawerHeadline: String = "",
-    drawerHeadlineContent: (() -> Unit)? = null,
+    drawerHeadlineContent: @Composable (() -> Unit)? = null,
     menuItems: List<ComposentsMenuItem> = emptyList(),
     onMenuItemSelected: (ComposentsMenuItem) -> Unit = {},
     selectedItemId: String = "",
@@ -98,7 +98,7 @@ fun ComposentsDrawerMenu(
 @Composable
 private fun AppBarHeadLineContent(
     appBarHeadline: String = "",
-    appBarHeadlineContent: (() -> Unit)? = null,
+    appBarHeadlineContent: @Composable (() -> Unit)? = null,
 ) {
     appBarHeadlineContent?.let {
         it()
@@ -115,7 +115,7 @@ private fun AppBarHeadLineContent(
 @Composable
 private fun DrawerMenuItemsContent(
     menuItemsTitle: String,
-    drawerTitleContent: (() -> Unit)?,
+    drawerTitleContent: @Composable (() -> Unit)?,
     coroutineScope: CoroutineScope,
     drawerState: DrawerState,
     menuItems: List<ComposentsMenuItem>,
@@ -220,7 +220,7 @@ private fun DrawerMenuItemHeader(
 @Composable
 private fun DrawerMenuItemsHeader(
     menuItemsTitle: String,
-    drawerTitleContent: (() -> Unit)?,
+    drawerTitleContent: @Composable (() -> Unit)?,
     coroutineScope: CoroutineScope,
     drawerState: DrawerState,
 ) {
