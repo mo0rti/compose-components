@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace 'bluevelvet.composents.foundation'
+    namespace 'mortitech.composents.foundation'
     compileSdk 33
 
     defaultConfig {

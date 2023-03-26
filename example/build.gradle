@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'bluevelvet.composents.example'
+    namespace 'mortitech.composents.example'
     compileSdk 33
 
     defaultConfig {
-        applicationId "bluevelvet.composents.example"
+        applicationId "mortitech.composents.example"
         minSdk 29
         targetSdk 33
         versionCode 1

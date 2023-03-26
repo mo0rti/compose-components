@@ -25,11 +25,11 @@
         </activity>
 
         <activity
-            android:name="bluevelvet.composents.example.activity.home.HomeActivity"
+            android:name=".activity.home.HomeActivity"
             android:exported="false"/>
 
         <activity
-            android:name="bluevelvet.composents.example.activity.auth.AuthActivity"
+            android:name=".activity.auth.AuthActivity"
             android:exported="false"/>
     </application>
 
