@@ -10,7 +10,7 @@ This repo is a jetpack compose library to easily create a toolbar with overflow 
 ## Getting Started
 [![](https://jitpack.io/v/mo0rti/compose-components.svg)](https://jitpack.io/#mo0rti/compose-components)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![Compatible with Compose — 1.3.0](https://img.shields.io/badge/Compatible%20with%20Compose-1.3.0-brightgreen)](https://developer.android.com/jetpack/androidx/releases/compose-foundation#1.3.0)
+[![Compatible with Compose — 1.4.0](https://img.shields.io/badge/Compatible%20with%20Compose-1.4.0-brightgreen)](https://developer.android.com/jetpack/androidx/releases/compose-foundation#1.4.0)
 
 ## Usage
 
