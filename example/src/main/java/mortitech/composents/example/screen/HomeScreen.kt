@@ -12,6 +12,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.HorizontalPagerIndicator
 import com.google.accompanist.pager.rememberPagerState
+import mortitech.composents.foundation.expandable.ExpandableCard
 
 /**
  * Home Screen
@@ -47,9 +48,12 @@ fun HomeScreen() {
                 .padding(top = 20.dp),
             pagerState = pagerState
         )
+        ExpandableCard(
+            title = "My Accordion",
+            content = "There once was a ship that put to sea The name of the ship was the Billy O' Tea The winds blew up, her bow dipped down Oh blow, my bully boys, blow"
+        )
         Spacer(modifier = Modifier.fillMaxSize())
     }
-
 }
 
 @Composable
